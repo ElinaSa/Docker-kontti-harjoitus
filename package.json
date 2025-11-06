@@ -1,0 +1,30 @@
+{
+  "name": "docker-kontti-harjoitus",
+  "version": "1.0.0",
+  "description": "docker-harjoitus",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ElinaSa/Docker-kontti-harjoitus.git"
+  },
+  "keywords": [
+    "Node.js",
+    "Docker",
+    "PostgreSQL"
+  ],
+  "author": "elina",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ElinaSa/Docker-kontti-harjoitus/issues"
+  },
+  "homepage": "https://github.com/ElinaSa/Docker-kontti-harjoitus#readme",
+  "dependencies": {
+    "express": "^5.1.0",
+    "express-handlebars": "^8.0.3",
+    "pg": "^8.16.3",
+    "pg-pool": "^3.10.1"
+  }
+}
