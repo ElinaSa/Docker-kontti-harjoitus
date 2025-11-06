@@ -56,9 +56,14 @@ app.get('/tiedot', (req, res) => {
 
         // Render the page and give a key to the resultset
         // to be used in handlebars code
-        res.render('tiedot',{containerData: resultset.rows});
+        res.render('tiedot',{containerData: resultset.rows})
     })
     
+});
+
+// A test route to testi.handlebars page
+app.get('testi', (req, res) => {
+    res.render('testi')
 });
 
 // SERVER START
