@@ -9,12 +9,15 @@
 const express = require('express');
 const {engine} = require('express-handlebars');
 
+// Library for handling .env variables
+const dotenv = require('dotenv');
+
+
 // Local libraries and modules
 // ---------------------------
 
 // A module to demonstrate local dependency to be included in the container
-const dbOperations = require('./dbOperations');
-
+const dbOperations = require('./dbOperations')
 //const pgtools =  require('./postgres-tools')
 
 // INITIALIZATION
@@ -23,9 +26,14 @@ const dbOperations = require('./dbOperations');
 // Create an express app
 const app = express();
 
-// Define a TCP port to listen: read env or use 8080 if undefined
-const PORT = process.env.PORT || 8080
+// Initialize .env to access variables
+dotenv.config();
 
+// Define a TCP port to listen: read env or use 8080 if undefined
+// const PORT = process.env.PORT || 8080
+const PORT = process.env.APP_CONTAINER_PORT || 8080
+
+// 
 // Set a folders for static files like css, images or icons
 app.use(express.static('public'));
 app.use('/images', express.static('public/images'));
