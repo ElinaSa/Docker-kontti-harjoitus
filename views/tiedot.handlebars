@@ -5,10 +5,12 @@
         <!-- A picture about containers limited to available space in the container -->
         <img width="100%" src="/images/Konttikuvia3.png" alt="Kontin varjossa">
 
-        
+        {{!-- Start Handlebars For-Each-loop to show all rows in containerData --}}
         {{#each containerData}}
-        {{omistaja}}{{sisalto}}
+            {{!-- Print values of omistaja-key and sisalto-key--}}
+            <h2>{{omistaja}} {{sisalto}}</h2>
         <br>
+        {{!-- End the loop --}}
         {{/each}}       
     </div>
     

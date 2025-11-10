@@ -12,7 +12,6 @@ const {engine} = require('express-handlebars');
 // Local libraries and modules
 // ---------------------------
 
-
 // A module to demonstrate local dependency to be included in the container
 const dbOperations = require('./dbOperations');
 
