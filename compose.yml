@@ -1,0 +1,31 @@
+version: '3.8' # Määrittelee käytettävän version
+# Määritellään luotavat kontit
+services:
+  postgresql:
+    image: postgres:18-trixie # Peruslevykuva
+    ports:
+      - "5434:5432"
+    environment:
+      - POSTGRES_PASSWORD=Q2werty7 # Salasanan luominen VAI
+      # - POSTGRES_USER_PASSWORD=Q2werty7 # Salasanan luominen
+      
+    volumes:
+      - db:/var/lib/postgresql # Ohjataaan postgres-datahakemiston tiedot taltioon db
+  app:
+  # Määritellään, mitä kontteja sovelllust tarvitsee
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file: ./.env         
+    ports:
+      - "$APP_USER_PORT:$APP_CONTAINER_PORT"
+    depends_on:
+      - postgresql
+    command: node app.js
+volumes:
+  db: 
+# Tyhjiä rivejä tähän ei saa jättää, mutta kommentteja voi tehdä
+
+
+
+

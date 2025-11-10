@@ -77,3 +77,7 @@ app.get('testi', (req, res) => {
 // ------------
 app.listen(PORT)
 console.log(`Server started on port ${PORT}`)
+
+// Näiden rivien avulla saa näkyviin kaiken, myös järjestelmätiedot
+var environment = process.env
+console.log(environment)

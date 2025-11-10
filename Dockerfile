@@ -11,7 +11,7 @@ RUN chown -R node:node /opt/kontti
 WORKDIR /opt/kontti
 
 #Copy package.json and package-lock.json files
-COPY --chown=node:node package* .json ./
+COPY --chown=node:node package*.json ./
 
 # Change to node user
 USER node
