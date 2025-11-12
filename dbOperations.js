@@ -13,15 +13,29 @@ const Pool = require('pg').Pool
 // SETTINGS
 // --------
 
-// Initialize .env
+// Initialize .env for use and save variables to be exported
 dotenv.config();
+const currentEnv = process.env;
+console.log(currentEnv.RUN_ENV);
 
-// Read environment variables from .env
-const HOST = process.env.POSTGRESQL_HOST
-const PORT =  process.env.POSTGRESQL_USER_PORT
-const DATABASE = process.env.POSTGRESQL_DB
-const USER = process.env.POSTGRESQL_USER
-const PASSWORD = process.env.POSTGRESQL_USER_PASSWORD
+let HOST = ''
+let PORT = ''
+
+// Read RUN_ENV to change between production and development
+if (currentEnv.RUN_ENV == 'dev') {
+    // Read development environment variables from .env
+    HOST = currentEnv.POSTGRESQL_DEV_HOST; // localhost
+    PORT = currentEnv.POSTGRESQL_USER_PORT; // 5434
+} else {
+    // Read production environment variables from env.
+    HOST = currentEnv.POSTGRESQL_PROD_HOST; // Container postgresql
+    PORT = currentEnv.POSTGRESQL_CONTAINER_PORT; // Container port 5432
+};
+
+// Define independent variables for connection settings
+const DATABASE = currentEnv.POSTGRESQL_DB;
+const USER = currentEnv.POSTGRESQL_USER;
+const PASSWORD = currentEnv.POSTGRESQL_USER_PASSWORD;
 
 //Database connection settings
 const connection = {
@@ -31,6 +45,8 @@ const connection = {
     user: USER,
     password: PASSWORD
 };
+
+console.log (connection);
 
 // Create a new Pool object for queries
 const pool = new Pool(connection);
@@ -46,4 +62,4 @@ const getContainerData = async () => {
 }
 
 // Export functions needed by the main app
-module.exports = {getContainerData};
+module.exports = {currentEnv, connection, getContainerData};
